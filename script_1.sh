@@ -1,16 +1,8 @@
 #!/bin/sh
 
-../configure --prefix=/usr       \
-             --sysconfdir=/etc   \
-             --enable-ld=default \
-             --enable-plugins    \
-             --enable-shared     \
-             --disable-werror    \
-             --enable-64-bit-bfd \
-             --enable-new-dtags  \
-             --with-system-zlib  \
-             --enable-default-hash-style=gnu
+sed -i '/long long t1;/,+1s/()/(...)/' configure
 
-make tooldir=/usr
-
-
+./configure --prefix=/usr    \
+            --enable-cxx     \
+            --disable-static \
+            --docdir=/usr/share/doc/gmp-6.3.0
