@@ -1,12 +1,16 @@
 #!/bin/sh
 
-python3 -c 'from pty import spawn; spawn(["echo", "ok"])'
+../configure --prefix=/usr       \
+             --sysconfdir=/etc   \
+             --enable-ld=default \
+             --enable-plugins    \
+             --enable-shared     \
+             --disable-werror    \
+             --enable-64-bit-bfd \
+             --enable-new-dtags  \
+             --with-system-zlib  \
+             --enable-default-hash-style=gnu
 
-patch -Np1 -i ../expect-5.45.4-gcc15-1.patch
+make tooldir=/usr
 
-./configure --prefix=/usr           \
-            --with-tcl=/usr/lib     \
-            --enable-shared         \
-            --disable-rpath         \
-            --mandir=/usr/share/man \
-            --with-tclinclude=/usr/include
+
