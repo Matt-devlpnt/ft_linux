@@ -1,10 +1,11 @@
 #!/bin/sh
 
-sed -i '/int Guess/a \
-  int   j = 0;\
-  char* jobs = getenv( "NINJAJOBS" );\
-  if ( jobs != NULL ) j = atoi( jobs );\
-  if ( j > 0 ) return j;\
-' src/ninja.cc
+patch -Np1 -i ../coreutils-9.7-upstream_fix-1.patch
 
-python3 configure.py --bootstrap --verbose
+patch -Np1 -i ../coreutils-9.7-i18n-1.patch
+
+autoreconf -fv
+automake -af
+FORCE_UNSAFE_CONFIGURE=1 ./configure \
+            --prefix=/usr            \
+            --enable-no-install-program=kill,uptime
