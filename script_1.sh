@@ -1,6 +1,14 @@
 #!/bin/sh
 
-./configure --prefix=/usr             \
-            --without-bash-malloc     \
-            --with-installed-readline \
-            --docdir=/usr/share/doc/bash-5.3
+sed -i 's/def HAVE_TERMCAP_TGETENT/ 1/' telnet/telnet.c
+
+./configure --prefix=/usr        \
+            --bindir=/usr/bin    \
+            --localstatedir=/var \
+            --disable-logger     \
+            --disable-whois      \
+            --disable-rcp        \
+            --disable-rexec      \
+            --disable-rlogin     \
+            --disable-rsh        \
+            --disable-servers
