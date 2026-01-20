@@ -1,5 +1,7 @@
 #!/bin/sh
 
-make -C libelf install
-install -vm644 config/libelf.pc /usr/lib/pkgconfig
-rm /usr/lib/libelf.a
+cat > /etc/pip.conf << EOF
+[global]
+root-user-action = ignore
+disable-pip-version-check = true
+EOF

@@ -1,5 +1,7 @@
 #!/bin/sh
 
-./configure --prefix=/usr        \
-            --disable-debuginfod \
-            --enable-libdebuginfod=dummy
+./configure --prefix=/usr          \
+            --enable-shared        \
+            --with-system-expat    \
+            --enable-optimizations \
+            --without-static-libpython
