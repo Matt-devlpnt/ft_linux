@@ -1,8 +1,6 @@
 #!/bin/sh
 
-ulimit -s -H unlimited
-
-sed -e '/cpython/d' -i ../gcc/testsuite/gcc.dg/plugin/plugin.exp
-
-chown -R tester .
-su tester -c "PATH=$PATH make -k check"
+for lib in ncurses form panel menu ; do
+    ln -sfv lib${lib}w.so /usr/lib/lib${lib}.so
+    ln -sfv ${lib}w.pc    /usr/lib/pkgconfig/${lib}.pc
+done
