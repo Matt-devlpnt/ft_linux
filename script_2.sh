@@ -1,7 +1,5 @@
 #!/bin/sh
 
-cat > /etc/pip.conf << EOF
-[global]
-root-user-action = ignore
-disable-pip-version-check = true
-EOF
+install -vm755 ninja /usr/bin/
+install -vDm644 misc/bash-completion /usr/share/bash-completion/completions/ninja
+install -vDm644 misc/zsh-completion  /usr/share/zsh/site-functions/_ninja

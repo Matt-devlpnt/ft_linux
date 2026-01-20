@@ -1,7 +1,10 @@
 #!/bin/sh
 
-./configure --prefix=/usr          \
-            --enable-shared        \
-            --with-system-expat    \
-            --enable-optimizations \
-            --without-static-libpython
+sed -i '/int Guess/a \
+  int   j = 0;\
+  char* jobs = getenv( "NINJAJOBS" );\
+  if ( jobs != NULL ) j = atoi( jobs );\
+  if ( j > 0 ) return j;\
+' src/ninja.cc
+
+python3 configure.py --bootstrap --verbose
