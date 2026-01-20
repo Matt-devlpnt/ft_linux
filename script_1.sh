@@ -1,7 +1,5 @@
 #!/bin/sh
 
-./config --prefix=/usr         \
-         --openssldir=/etc/ssl \
-         --libdir=lib          \
-         shared                \
-         zlib-dynamic
+./configure --prefix=/usr        \
+            --disable-debuginfod \
+            --enable-libdebuginfod=dummy

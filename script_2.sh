@@ -1,8 +1,5 @@
 #!/bin/sh
 
-sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
-make MANSUFFIX=ssl install
-
-mv -v /usr/share/doc/openssl /usr/share/doc/openssl-3.5.2
-
-cp -vfr doc/* /usr/share/doc/openssl-3.5.2
+make -C libelf install
+install -vm644 config/libelf.pc /usr/lib/pkgconfig
+rm /usr/lib/libelf.a
