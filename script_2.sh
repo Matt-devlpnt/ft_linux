@@ -1,8 +1,9 @@
 #!/bin/sh
 
-make DESTDIR=$PWD/dest install
-install -vm755 dest/usr/lib/libncursesw.so.6.5 /usr/lib
-rm -v  dest/usr/lib/libncursesw.so.6.5
-sed -e 's/^#if.*XOPEN.*$/#if 1/' \
-    -i dest/usr/include/curses.h
-cp -av dest/* /
+LC_ALL=C.UTF-8 su -s /usr/bin/expect tester << "EOF"
+set timeout -1
+spawn make tests
+expect eof
+lassign [wait] _ _ _ value
+exit $value
+EOF
