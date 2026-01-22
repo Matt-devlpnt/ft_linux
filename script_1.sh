@@ -1,3 +1,5 @@
 #!/bin/sh
 
-echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
+sed -e 's/GROUP="render"/GROUP="video"/' \
+    -e 's/GROUP="sgx", //'               \
+    -i rules.d/50-udev-default.rules.in

@@ -1,8 +1,5 @@
 #!/bin/sh
 
-ln -sv vim /usr/bin/vi
-for L in  /usr/share/man/{,*/}man1/vim.1; do
-    ln -sv vim.1 $(dirname $L)/vi.1
-done
-
-ln -sv ../vim/vim91/doc /usr/share/doc/vim-9.1.1629
+tar -xf ../../systemd-man-pages-257.8.tar.xz \
+    --no-same-owner --strip-components=1     \
+    -C /usr/share/man

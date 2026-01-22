@@ -1,7 +1,21 @@
 #!/bin/sh
 
-chown -R tester .
-sed '/test_plugin_glvs/d' -i src/testdir/Make_all.mak
-
-su tester -c "TERM=xterm-256color LANG=en_US.UTF-8 make -j1 test" \
-   &> vim-test.log
+meson setup ..                \
+      --prefix=/usr           \
+      --buildtype=release     \
+      -D default-dnssec=no    \
+      -D firstboot=false      \
+      -D install-tests=false  \
+      -D ldconfig=false       \
+      -D sysusers=false       \
+      -D rpmmacrosdir=no      \
+      -D homed=disabled       \
+      -D userdb=false         \
+      -D man=disabled         \
+      -D mode=release         \
+      -D pamconfdir=no        \
+      -D dev-kvm-mode=0660    \
+      -D nobody-group=nogroup \
+      -D sysupdate=disabled   \
+      -D ukify=disabled       \
+      -D docdir=/usr/share/doc/systemd-257.8
