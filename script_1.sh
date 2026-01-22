@@ -1,5 +1,10 @@
 #!/bin/sh
 
-sed -e 's/GROUP="render"/GROUP="video"/' \
-    -e 's/GROUP="sgx", //'               \
-    -i rules.d/50-udev-default.rules.in
+./configure --prefix=/usr                         \
+            --docdir=/usr/share/doc/man-db-2.13.1 \
+            --sysconfdir=/etc                     \
+            --disable-setuid                      \
+            --enable-cache-owner=bin              \
+            --with-browser=/usr/bin/lynx          \
+            --with-vgrind=/usr/bin/vgrind         \
+            --with-grap=/usr/bin/grap
